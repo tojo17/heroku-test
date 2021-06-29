@@ -1,3 +1,4 @@
+import sys
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,4 +18,8 @@ main.app.add_middleware(
 )
 
 if __name__ == "__main__":
-    uvicorn.run(main.app, host="0.0.0.0", port=8000)
+    try:
+        port = int(sys.argv[1])
+    except:
+        port = 8000
+    uvicorn.run(main.app, host="0.0.0.0", port=port)
